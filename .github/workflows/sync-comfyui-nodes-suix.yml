@@ -77,13 +77,11 @@ jobs:
             git commit -m "Revert workflows to local state after upstream merge"
           fi
           git push origin master
+          
           # ========== 后续自定义节点逻辑（不变）==========
           export MANAGER_REPO_DIR=/tmp/ComfyUI-Manager
-          mkdir -p ~/.ssh
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          git clone git@github.com:Comfy-Org/ComfyUI-Manager.git "$MANAGER_REPO_DIR"
+          git clone https://github.com/Comfy-Org/ComfyUI-Manager.git "$MANAGER_REPO_DIR"
+          
           python -m venv venv
           source venv/bin/activate
           pip install requests
