@@ -783,7 +783,7 @@ class StoryDiffusion_CLIPTextEncode:
                     
             else:
                 if infer_mode=="classic": #TODO 逆序的角色会出现iD不匹配，受影响的有story文生图
-                    only_role_emb= cf_clip(only_role_list, clip, infer_mode,role_list) #story模式需要拆分prompt，所以这里需要传入role_list
+                    only_role_emb= cf_clip([only_role_list], clip, infer_mode,role_list) #story模式需要拆分prompt，所以这里需要传入role_list
                 elif infer_mode=="dreamo" or infer_mode=="bagel_edit" or (infer_mode=="flux_omi" and not switch.get("no_dif_quantization")):
                     pass # TODO 暂时不支持dreamo
                 elif infer_mode=="qwen_image":
@@ -2332,4 +2332,5 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "StoryDiffusion_CLIPTextEncode":"StoryDiffusion_CLIPTextEncode",
     "StoryDiffusion_KSampler":"StoryDiffusion_KSampler",
 }
+
 
